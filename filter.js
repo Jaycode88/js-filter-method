@@ -21,6 +21,11 @@ const people = [
   },
 ];
 
+const oldEnough = people.filter(person => person.age >= 21);  //filters those in the array over or equle to 21
+console.log(oldEnough)
+
+const paul = people.filter(person => person.name === "Paul");  //filter method always returns an array even if it only contains 1 item
+console.log(paul)
 
 // Complex Filtering
 const students = [
@@ -55,3 +60,15 @@ const students = [
     ]
   },
 ];
+
+const candidates = students.filter(student => {
+    let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5);   //this only returns students with skills with 5 or years more experience
+    return strongSkills.length > 0;
+})
+console.log(candidates)
+
+// the above can be made easier like soo
+const has5yearsExp = skill => skill.yrsExperience >= 5;
+const hasStrongSkills = student => student.skills.filter(has5yearsExp).length > 0;
+const candidates1 = students.filter(hasStrongSkills);
+console.log(candidates1)
